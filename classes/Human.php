@@ -2,15 +2,15 @@
 
 class Human
 {
-  const MAX_HITPOINT = 100;
+  const MAX_HITPOINT = 2000;
   public $name;
-  public $hitPoint = 100;
+  public $hitPoint = 2000;
   public $attackPoint = 20;
 
   public function doAttack($enemy)
   {
     echo "「" . $this->name . "」の攻撃！\n";
-    echo "【" . $enemy->name . "】に" . $this->attckPoint . "のダメージ!\n";
+    echo "【" . $enemy->name . "】に" . $this->attackPoint * rand(1, 10) . "のダメージ!\n";
     $enemy->tookDamage($this->attackPoint);
   }
 
