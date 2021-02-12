@@ -3,8 +3,8 @@
 class Brave extends Human
 {
   const MAX_HITPOINT = 120;
-  public $hitPoint = self::MAX_HITPOINT;
-  public $attackPoint = 30;
+  private $hitPoint = self::MAX_HITPOINT;
+  private $attackPoint = 30;
 
   public function doAttack($enemy)
   {
