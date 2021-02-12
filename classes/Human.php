@@ -7,6 +7,10 @@ class Human
   private $hitPoint = 300;
   private $attackPoint = 20;
   
+  public function __construct($name)
+  {
+    $this->name = $name;
+  }
 
   public function doAttack($enemy)
   {
@@ -28,8 +32,13 @@ class Human
     return $this->name;
   }
 
-  public function setName()
+  public function getHitPoint()
   {
-    $this->name = $name;
+    return $this->hitPoint;
+  }
+
+  public function getAttackPoint()
+  {
+    return $this->attackPoint;
   }
 }
