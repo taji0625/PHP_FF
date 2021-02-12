@@ -22,4 +22,9 @@ class Human
       $this->hitPoint = 0;
     }
   }
+
+  public function getName()
+  {
+    return $this->name;
+  }
 }
