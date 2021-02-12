@@ -27,4 +27,9 @@ class Human
   {
     return $this->name;
   }
+
+  public function setName()
+  {
+    $this->name = $name;
+  }
 }
