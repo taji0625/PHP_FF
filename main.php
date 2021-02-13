@@ -83,5 +83,10 @@ while (!$isFinishFlg) {
 
 
 echo "★★★ 戦闘終了 ★★★\n\n";
-echo $tiida->getName() . " ： " . $tiida->getHitPoint() . "/" . $tiida::MAX_HITPOINT . "\n";
-echo $goblin->getName() . " ： " . $goblin->getHitPoint() . "/" . $goblin::MAX_HITPOINT . "\n\n";
+foreach ($members as $member) {
+  echo $member->getName() . " ： " . $member->getHitPoint() . "/" . $member::MAX_HITPOINT . "\n";
+}
+echo "\n";
+foreach ($enemies as $enemy) {
+  echo $enemy->getName() . " ： " . $enemy->getHitPoint() . "/" . $enemy::MAX_HITPOINT . "\n";
+}
