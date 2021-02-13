@@ -4,18 +4,18 @@ require_once('./lib/Loader.php');
 require_once('./lib/Utility.php');
 
 $loader = new Loader();
-$loader->regDirectory(__DIR__.'/classes');
+$loader->regDirectory(__DIR__.'/classes/constants');
 $loader->register();
 
 $members = [];
-$members[] = new Brave('オベリスクの巨神兵');
-$members[] = new WhiteMage('ブラックマジシャンガール');
-$members[] = new BlackMage('ブラックマジシャン');
+$members[] = new Brave(CharacterName::TIIDA);
+$members[] = new WhiteMage(CharacterName::YUNA);
+$members[] = new BlackMage(CharacterName::RULU);
 
 $enemies = [];
-$enemies[] = new Enemy('デーモンの召喚', 25);
-$enemies[] = new Enemy('ブルーアイズのホワイトドラゴン', 40);
-$enemies[] = new Enemy('人造人間サイコショッカー', 24);
+$enemies[] = new Enemy(EnemyName::GOBLINS, 20);
+$enemies[] = new Enemy(EnemyName::BOMB, 25);
+$enemies[] = new Enemy(EnemyName::MORBOL, 30);
 
 $turn = 1; 
 
