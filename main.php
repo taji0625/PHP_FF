@@ -1,30 +1,64 @@
 <?php
 
-require_once('./classes/Human.php');
-require_once('./classes/Enemy.php');
-require_once('./classes/Brave.php');
+require_once('./lib/Loader.php');
+require_once('./lib/Utility.php');
 
-$tiida = new Brave("ティーダ");
-$goblin = new Enemy("ゴブリン");
+$loader = new Loader();
+$loader->regDirectory(__DIR__.'/classes');
+$loader->regDirectory(__DIR__ . '/classes/constants'); 
+$loader->register();
+
+$members = [];
+$members[] = new Brave(CharacterName::TIIDA);
+$members[] = new WhiteMage(CharacterName::YUNA);
+$members[] = new BlackMage(CharacterName::RULU);
+
+$enemies = [];
+$enemies[] = new Enemy(EnemyName::GOBLINS, 20);
+$enemies[] = new Enemy(EnemyName::BOMB, 25);
+$enemies[] = new Enemy(EnemyName::MORBOL, 30);
 
 $turn = 1; 
 
-while ($tiida->getHitPoint() > 0 && $goblin->getHitPoint() > 0) {
-  echo "*** $turn ターン目 ***\n\n"; 
-  echo $tiida->getName() . " ： " . $tiida->getHitPoint() . "/" . $tiida::MAX_HITPOINT . "\n";
-  echo $goblin->getName() . " ： " . $goblin->getHitPoint() . "/" . $goblin::MAX_HITPOINT . "\n";
-  echo "\n";
+$isFinishFlg = false;
 
-  // 攻撃
-  $tiida->doAttack($goblin);
-  echo "\n";
-  $goblin->doAttack($tiida);
-  echo "\n";
+$messageObj = new Message;
+
+while (!$isFinishFlg) {
+  echo "*** $turn ターン目 ***\n\n"; 
+   // 仲間の表示
+  $messageObj->displayStatusMessage($members);
+
+   // 敵の表示
+  $messageObj->displayStatusMessage($enemies);
+
+  // 仲間の攻撃
+  $messageObj->displayAttackMessage($members, $enemies);
+
+  // 敵の攻撃
+  $messageObj->displayAttackMessage($enemies, $members); 
+
+  // 戦闘終了条件のチェック 仲間全員のHPが0 または、敵全員のHPが0
+  $isFinishFlg = isFinish($members);
+  if ($isFinishFlg) {
+    $message = "GAME OVER ....\n\n";
+    break;
+  }
+
+  $isFinishFlg = isFinish($enemies);
+  if ($isFinishFlg) {
+    $message = "♪♪♪ファンファーレ♪♪♪\n\n";
+    break;
+  }
 
   $turn++;
 };
 
 
 echo "★★★ 戦闘終了 ★★★\n\n";
-echo $tiida->getName() . " ： " . $tiida->getHitPoint() . "/" . $tiida::MAX_HITPOINT . "\n";
-echo $goblin->getName() . " ： " . $goblin->getHitPoint() . "/" . $goblin::MAX_HITPOINT . "\n\n";
+echo $message;
+ // 仲間の表示
+$messageObj->displayStatusMessage($members);
+
+ // 敵の表示
+$messageObj->displayStatusMessage($enemies);
