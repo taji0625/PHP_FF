@@ -38,12 +38,59 @@ class Lives
     }
   }
 
-  // 現在HPを設定するメソッド（セッター）
   public function recoveryDamage($heal, $target)
   {
     $this->hitPoint += $heal;
     if ($this->hitPoint > $target::MAX_HITPOINT) {
       $this->hitPoint = $target::MAX_HITPOINT;
     }
+  }
+
+  //  攻撃するメソッド
+  public function doAttack($targets)
+  {
+    if (!$this->isEnableAttack($targets)) {
+      return false;
+    }
+    // ターゲットの決定
+    $target = $this->selectTarget($targets);
+
+    echo "『" .$this->name . "』の攻撃！\n";
+    echo "【" . $target->getName() . "】に " . $this->attackPoint . " のダメージ！ \n";
+    $target->tookDamage($this->attackPoint);
+    return true;
+  }
+
+  //  攻撃ができるかどうかチェック
+  public function isEnableAttack($targets)
+  {
+    // チェック１：自信のHPが0以上かどうか
+    if ($this->hitPoint <= 0) {
+      return false;
+    }
+    // チェック２：敵が全員HP0以下かどうか
+    $isAllDie = true;
+    foreach ($targets as $target) {
+      if ($target->getHitPoint() > 0) {
+        $isAllDie = false;
+      }
+    }
+    if ($isAllDie) {
+      return false;
+    }
+
+    // チェックを抜けた場合、攻撃可能
+    return true;
+  }
+
+  // ターゲットを決めるメソッド
+  public function selectTarget($targets)
+  {
+    $target = $targets[rand(0, count($targets) -1)];
+    // 敵のHPが0以下の場合再度ターゲットを決める
+    while ($target->getHitPoint() <= 0) {
+      $target = $targets[rand(0, count($targets) -1)];
+    }
+    return $target;
   }
 }
