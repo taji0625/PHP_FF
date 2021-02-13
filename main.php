@@ -4,6 +4,7 @@ require_once('./classes/Human.php');
 require_once('./classes/Enemy.php');
 require_once('./classes/Brave.php');
 require_once('./classes/BlackMage.php');
+require_once('./classes/Message.php');
 require_once('./classes/WhiteMage.php');
 
 $members = [];
@@ -20,31 +21,21 @@ $turn = 1;
 
 $isFinishFlg = false;
 
+$messageObj = new Message;
+
 while (!$isFinishFlg) {
   echo "*** $turn ターン目 ***\n\n"; 
-  foreach ($members as $member) {
-    echo $member->getName() . " : " . $member->getHitPoint() . "/" . $member::MAX_HITPOINT . "\n";
-  }
-  echo "\n";
-  foreach ($enemies as $enemy) {
-    echo $enemy->getName() . " : " . $enemy->getHitPoint() . "/" . $enemy::MAX_HITPOINT . "\n";
-  }
-  echo "\n";
+   // 仲間の表示
+  $messageObj->displayStatusMessage($members);
 
-  foreach ($members as $member) {
-    if (get_class($member) == "WhiteMage") {
-      $attackResult = $member->doAttackWhiteMage($enemies, $members);
-    } else {
-      $attackResult = $member->doAttack($enemies);
-    }
-    echo "\n";
-  }  
+   // 敵の表示
+  $messageObj->displayStatusMessage($enemies);
 
-  foreach ($enemies as $enemy) {
-    $enemy->doAttack($members);
-    echo "\n";
-  }
-  echo "\n";
+  // 仲間の攻撃
+  $messageObj->displayAttackMessage($members, $enemies);
+
+  // 敵の攻撃
+  $messageObj->displayAttackMessage($enemies, $members);
 
   $deathCnt = 0;
   foreach ($members as $member) {
@@ -79,10 +70,8 @@ while (!$isFinishFlg) {
 
 
 echo "★★★ 戦闘終了 ★★★\n\n";
-foreach ($members as $member) {
-  echo $member->getName() . " ： " . $member->getHitPoint() . "/" . $member::MAX_HITPOINT . "\n";
-}
-echo "\n";
-foreach ($enemies as $enemy) {
-  echo $enemy->getName() . " ： " . $enemy->getHitPoint() . "/" . $enemy::MAX_HITPOINT . "\n";
-}
+ // 仲間の表示
+$messageObj->displayStatusMessage($members);
+
+ // 敵の表示
+$messageObj->displayStatusMessage($enemies);
