@@ -7,8 +7,8 @@ require_once('./classes/BlackMage.php');
 require_once('./classes/WhiteMage.php');
 
 $members = [];
-$members[] = new Brave('ティーダ');
-$members[] = new WhiteMage('ホワイトマジシャン');
+$members[] = new Brave('オベリスクの巨神兵');
+$members[] = new WhiteMage('ブラックマジシャンガール');
 $members[] = new BlackMage('ブラックマジシャン');
 
 $enemies = [];

@@ -2,8 +2,8 @@
 
 class BlackMage extends Human
 {
-  const MAX_HITPOINT = 80;
-  private $hitPoint = 80;
+  const MAX_HITPOINT = 280;
+  private $hitPoint = 280;
   private $attackPoint = 10;
   private $intelligence = 30;
 

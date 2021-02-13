@@ -2,8 +2,8 @@
 
 class WhiteMage extends Human
 {
-  const MAX_HITPOINT = 80;
-  private $hitPoint = 80;
+  const MAX_HITPOINT = 250;
+  private $hitPoint = 250;
   private $attackPoint = 10;
   private $intelligence = 30;
 
