@@ -1,12 +1,10 @@
 <?php
 
-require_once('./classes/Lives.php');
-require_once('./classes/Human.php');
-require_once('./classes/Enemy.php');
-require_once('./classes/Brave.php');
-require_once('./classes/BlackMage.php');
-require_once('./classes/Message.php');
-require_once('./classes/WhiteMage.php');
+require_once('./lib/Loader.php');
+
+$loader = new Loader();
+$loader->regDirectory(__DIR__.'/classes');
+$loader->register();
 
 $members = [];
 $members[] = new Brave('オベリスクの巨神兵');
@@ -15,7 +13,7 @@ $members[] = new BlackMage('ブラックマジシャン');
 
 $enemies = [];
 $enemies[] = new Enemy('デーモンの召喚', 25);
-$enemies[] = new Enemy('ブルーアイズのホワイトドラゴン', 30);
+$enemies[] = new Enemy('ブルーアイズのホワイトドラゴン', 40);
 $enemies[] = new Enemy('人造人間サイコショッカー', 24);
 
 $turn = 1; 
