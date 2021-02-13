@@ -6,9 +6,15 @@ require_once('./classes/Brave.php');
 require_once('./classes/BlackMage.php');
 require_once('./classes/WhiteMage.php');
 
+$members = [];
+$members[] = new Brave('ティーダ');
+$members[] = new WhiteMage('ホワイトマジシャン');
+$members[] = new BlackMage('ブラックマジシャン');
 
-$tiida = new Brave("ティーダ");
-$goblin = new Enemy("ゴブリン");
+$enemies = [];
+$enemies[] = new Enemy('デーモンの召喚');
+$enemies[] = new Enemy('ブルーアイズのホワイトドラゴン');
+$enemies[] = new Enemy('人造人間サイコショッカー');
 
 $turn = 1; 
 
