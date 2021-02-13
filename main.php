@@ -4,7 +4,8 @@ require_once('./lib/Loader.php');
 require_once('./lib/Utility.php');
 
 $loader = new Loader();
-$loader->regDirectory(__DIR__.'/classes/constants');
+$loader->regDirectory(__DIR__.'/classes');
+$loader->regDirectory(__DIR__ . '/classes/constants'); 
 $loader->register();
 
 $members = [];
