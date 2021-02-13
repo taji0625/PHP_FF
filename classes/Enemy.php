@@ -7,9 +7,10 @@ class Enemy
   private $hitPoint = 300;
   private $attackPoint = 20;
 
-  public function __construct($name)
+  public function __construct($name, $attackPoint)
   {
     $this->name = $name;
+    $this->attackPoint = $attackPoint;
   }
 
   public function getName()

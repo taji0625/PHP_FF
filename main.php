@@ -12,9 +12,9 @@ $members[] = new WhiteMage('ホワイトマジシャン');
 $members[] = new BlackMage('ブラックマジシャン');
 
 $enemies = [];
-$enemies[] = new Enemy('デーモンの召喚');
-$enemies[] = new Enemy('ブルーアイズのホワイトドラゴン');
-$enemies[] = new Enemy('人造人間サイコショッカー');
+$enemies[] = new Enemy('デーモンの召喚', 25);
+$enemies[] = new Enemy('ブルーアイズのホワイトドラゴン', 30);
+$enemies[] = new Enemy('人造人間サイコショッカー', 24);
 
 $turn = 1; 
 
