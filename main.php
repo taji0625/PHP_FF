@@ -18,7 +18,9 @@ $enemies[] = new Enemy('人造人間サイコショッカー', 24);
 
 $turn = 1; 
 
-while ($tiida->getHitPoint() > 0 && $goblin->getHitPoint() > 0) {
+$isFinishFlg = false;
+
+while (!$isFinishFlg) {
   echo "*** $turn ターン目 ***\n\n"; 
   foreach ($members as $member) {
     echo $member->getName() . " : " . $member->getHitPoint() . "/" . $member::MAX_HITPOINT . "\n";
@@ -47,6 +49,34 @@ while ($tiida->getHitPoint() > 0 && $goblin->getHitPoint() > 0) {
     echo "\n";
   }
   echo "\n";
+
+  $deathCnt = 0;
+  foreach ($members as $member) {
+    if ($member->getHitPoint() > 0) {
+      $isFinishFlg = false;
+      break;
+    }
+    $deathCnt++;
+  }
+  if ($deathCnt === count($members)) {
+    $isFinishFlg = true;
+    echo "GAME OVER ....\n\n";
+    break;
+  }
+
+  $deathCnt = 0;
+  foreach ($enemies as $enemy) {
+    if ($enemy->getHitPoint() > 0) {
+      $isFinishFlg = false;
+      break;
+    }
+    $deathCnt++;
+  }
+  if ($deathCnt === count($enemies)) {
+    $isFinishFlg = true;
+    echo "♪♪♪ファンファーレ♪♪♪\n\n";
+    break;
+  }
 
   $turn++;
 };
