@@ -27,6 +27,10 @@ class BlackMage extends Human
     } else {
       parent::doAttack($enemies);
     }
+    if ($enemy->getHitPoint() <=0) {
+      echo $enemy->getName() . "を倒した！\n";
+    }
     return true;
   }
+
 }

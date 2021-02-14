@@ -26,4 +26,5 @@ class Message
     }
     echo "\n";
   }
+
 }

@@ -30,6 +30,9 @@ class WhiteMage extends Human
     } else {
       $enemy = $this->selectTarget($enemies);
       parent::doAttack($enemies);
+      if ($enemy->getHitPoint() <=0) {
+        echo $enemy->getName() . "を倒した！\n";
+      }
     }
     return true;
   }
