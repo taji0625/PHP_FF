@@ -58,6 +58,11 @@ class Lives
     echo "『" .$this->name . "』の攻撃！\n";
     echo "【" . $target->getName() . "】に " . $this->attackPoint . " のダメージ！ \n";
     $target->tookDamage($this->attackPoint);
+    if (get_class($target) != "Enemy") {
+      if ($target->getHitPoint() <=0) {
+        echo $target->getName() . "は死んだ。\n";
+      }
+    }
     return true;
   }
 
