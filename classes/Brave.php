@@ -23,11 +23,11 @@ class Brave extends Human
       echo "『ぜんりょくパンチ』！！\n";
       echo "【" . $enemy->getName() . "】" . " に " . $this->attackPoint * 1.5 . " のダメージ！\n";
       $enemy->tookDamage($this->attackPoint * 1.5);
+      if ($enemy->getHitPoint() <=0) {
+        echo $enemy->getName() . "を倒した！\n";
+      }
     } else {
       parent::doAttack($enemies);
-    }
-    if ($enemy->getHitPoint() <=0) {
-      echo $enemy->getName() . "を倒した！\n";
     }
     return true;
   }    
