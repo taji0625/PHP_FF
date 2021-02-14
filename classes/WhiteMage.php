@@ -21,7 +21,7 @@ class WhiteMage extends Human
     $memberIndex = rand(0, count($members) - 1);
     $member = $members[$memberIndex];
 
-    if(rand(1,2) === 1) {
+    if(rand(1,3) === 1) {
       echo $this->getName() . "はスキルを発動した！\n";
       $member = $this->selectTarget($members);
       echo "『ケアル』！！\n";
@@ -30,9 +30,6 @@ class WhiteMage extends Human
     } else {
       $enemy = $this->selectTarget($enemies);
       parent::doAttack($enemies);
-      if ($enemy->getHitPoint() <=0) {
-        echo $enemy->getName() . "を倒した！\n";
-      }
     }
     return true;
   }

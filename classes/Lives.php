@@ -62,6 +62,10 @@ class Lives
       if ($target->getHitPoint() <=0) {
         echo $target->getName() . "は死んだ。\n";
       }
+    } else {
+      if ($target->getHitPoint() <=0) {
+        echo $target->getName() . "を倒した！\n";
+      }
     }
     return true;
   }
